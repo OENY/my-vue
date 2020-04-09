@@ -2,14 +2,17 @@
     <div v-theme:column="'narrow'" id="show-blogs">
         <h1>博客总览</h1>
         <input type="text" v-model="search" placeholder="搜索"/>
-        <div v-for="blog in filteredBlogs" class="single-blog">
-            <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
+        <div v-for="blog in filteredBlogs" class="single-blog" v-bind:key="blog.id">
+            <router-link v-bind:to="'/blog/'+blog.id">
+                <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
+            </router-link>
             <article>{{blog.body | sinppet}}</article>
         </div>
     </div>
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
         name: "show-blogs",
         data(){
@@ -19,8 +22,8 @@
             }
         },
         created(){
-            this.$http.get("http://jsonplaceholder.typicode.com/posts")
-                .then(function (data) {
+            axios.get("http://jsonplaceholder.typicode.com/posts")
+                .then((data)=> {
                     //截取10个数据
                    this.blogs = data.body.slice(0,10);
                     console.log(this.blogs);
@@ -60,5 +63,15 @@
         margin:20px 0;
         box-sizing: border-box;
         background: #eee;
+        border: 1px dotted #aaa;
+    }
+    #show-blogs a{
+        color: #444;
+        text-decoration: none;
+    }
+    input[type="text"]{
+        padding: 8px;
+        width: 100%;
+        box-sizing: border-box;
     }
 </style>

@@ -45,6 +45,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
         name: "add-blog",
         data(){
@@ -61,12 +62,12 @@
         },
         methods:{
             post: function () {
-                this.$http.post("http://jsonplaceholder.typicode.com/posts",{
+                axios.post("http://jsonplaceholder.typicode.com/posts",{
                     title:this.blog.title,
                     body:this.blog.content,
                     userId:1
                 })
-                    .then(function (data) {
+                    .then((data)=> {
                         console.log(data);
                         this.submmited=true
                     })

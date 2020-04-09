@@ -1,7 +1,8 @@
 <template>
     <nav id="blog-header">
         <ul>
-            <li><router-link to="/" exact>博客</router-link>
+            <li>
+                <router-link to="/" exact>博客</router-link>
                 <router-link to="/add" exact>写博客</router-link>
             </li>
 
