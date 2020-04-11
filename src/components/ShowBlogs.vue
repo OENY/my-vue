@@ -25,7 +25,7 @@
             axios.get("http://jsonplaceholder.typicode.com/posts")
                 .then((data)=> {
                     //截取10个数据
-                   this.blogs = data.body.slice(0,10);
+                   this.blogs = data.data.slice(0,10);
                     console.log(this.blogs);
                 })
         },

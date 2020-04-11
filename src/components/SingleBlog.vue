@@ -19,11 +19,12 @@
         },
         created(){
             axios.get("http://jsonplaceholder.typicode.com/posts/" + this.id)
-                .then((data)=> {
-                    console.log(data);
-                    this.blog=data.body;
+                .then((res)=> {
+                    console.log(res);
+                    this.blog=res.data;
                 });
-        }
+        },
+
     }
 </script>
 
